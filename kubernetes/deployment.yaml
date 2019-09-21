@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static
+
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
+
+  template:
+    metadata:
+      creationTimestamp: null
+
+    spec:
+      terminationGracePeriodSeconds: 5
+
+      containers:
+        - name: static
+          image: 4ops/static
+
+          ports:
+            - name: http
+              containerPort: 8000
+            - name: health
+              containerPort: 8001
+
+          livenessProbe:
+            failureThreshold: 2
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /health
+              port: health
+
+          readinessProbe:
+            failureThreshold: 2
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+            tcpSocket:
+              port: http
+
+          resources:
+            limits:
+              cpu: 30m
+              memory: 30Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            procMount: Default
+            runAsGroup: 1000
+            runAsUser: 1000
