@@ -1,2 +1,17 @@
+namespace: production
+
+namePrefix: landing-
+nameSuffix: -content
+
+commonLabels:
+  component: landing
+  # k8s-app: static
+
 bases:
-  - ../
+  - github.com/4ops/static
+  - github.com/4ops/static/add/pdb
+
+images:
+  - name: 4ops/static
+    newName: my.registry.com/path/to/image
+    newTag: v1.0.0
