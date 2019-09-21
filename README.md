@@ -1,5 +1,7 @@
 # Kubernetes app static
 
+[![](https://images.microbadger.com/badges/image/4ops/static.svg)](https://microbadger.com/images/4ops/static "Get your own image badge on microbadger.com")
+
 Miminal container with [nginx](http://nginx.org), optimized for serving static content in kubernetes cluster.
 
 ## Building image with content
