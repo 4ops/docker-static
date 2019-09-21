@@ -5,5 +5,5 @@ metadata:
 spec:
   minAvailable: 1
   selector:
-    matchExpressions:
+    matchLabels:
       k8s-app: static
