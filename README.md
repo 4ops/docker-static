@@ -30,7 +30,7 @@ $ kubectl apply -k .
 Kustomize template for GitLab CI example:
 
 ```shell
-$ cat <<EOF | kubectl apply -f -
+$ cat <<EOF | kubectl apply -k -
 namespace: ${CI_ENVIRONMENT_NAME}
 
 namePrefix: ${CI_PROJECT_NAME}-
