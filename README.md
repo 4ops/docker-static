@@ -48,5 +48,5 @@ images:
   - name: 4ops/static
     newName: ${CI_REGISTRY_IMAGE}
     newTag: ${CI_PIPELINE_ID}
-
+EOF
 ```
